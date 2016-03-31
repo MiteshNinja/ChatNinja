@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.text.TextFlow?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <bottom>
+      <HBox spacing="5.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField id="inputMessage" fx:id="inputMessage" onAction="#sendMessage" promptText="Message" HBox.hgrow="ALWAYS" />
+            <Button fx:id="buttonSendMessage" mnemonicParsing="false" onAction="#sendMessage" text="Send" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </HBox>
+   </bottom>
+   <top>
+      <HBox spacing="5.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="serverAdd" onAction="#connectServer" />
+            <Button fx:id="buttonConnectServer" mnemonicParsing="false" onAction="#connectServer" text="Connect" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button fx:id="buttonStartServer" mnemonicParsing="false" onAction="#startServer" text="Start Server!" />
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </HBox>
+   </top>
+   <center>
+      <TextFlow prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="outputMessage" />
+         </children>
+      </TextFlow>
+   </center>
+</BorderPane>
