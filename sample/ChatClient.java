@@ -1,5 +1,11 @@
 package sample;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -14,6 +20,7 @@ public class ChatClient {
     private Socket socket;
     private BufferedReader in;
     private PrintWriter out;
+//    Controller controller = new Controller();
 
     public ChatClient(){
         System.out.print("2c");
@@ -29,28 +36,40 @@ public class ChatClient {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    while(true){
+                    while(true) {
                         String message = null;
                         try {
                             message = in.readLine();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        updateMessageWindow(message);
+                        System.out.println(message);
+                        try {
+                            updateMessageWindow(message);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
-            })
+            }).start();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void updateMessageWindow(String message) {
-
+    public void updateMessageWindow(String message) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
+        Stage stage = new Stage(StageStyle.DECORATED);
+        stage.setScene(new Scene((Pane) loader.load()));
+//        Controller.updateMessageWindow(message);
+        Controller controller = loader.<Controller>getController();
+        controller.updateMessageWindow(message);
+        stage.show();
     }
 
     public void sendMessage(String message){
         System.out.print("4c");
         out.println(message);
     }
+
 }
